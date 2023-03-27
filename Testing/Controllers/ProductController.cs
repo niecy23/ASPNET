@@ -22,7 +22,6 @@ namespace Testing.Controllers
         public IActionResult Index()
         {
             var products = repo.GetAllProducts();
-
             return View(products);
         }
 
@@ -45,7 +44,6 @@ namespace Testing.Controllers
         public IActionResult UpdateProductToDatabase(Product product)
         {
             repo.UpdateProduct(product);
-
             return RedirectToAction("ViewProduct", new { id = product.ProductID });
         }
 
@@ -58,6 +56,12 @@ namespace Testing.Controllers
         public IActionResult InsertProductToDatabase(Product productToInsert)
         {
             repo.InsertProduct(productToInsert);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult DeleteProduct(Product product)
+        {
+            repo.DeleteProduct(product);
             return RedirectToAction("Index");
         }
     }
